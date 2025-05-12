@@ -1,0 +1,475 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    aleatorio
+
+Grammar
+
+Rule 0     S' -> Z
+Rule 1     Z -> LstV ;
+Rule 2     LstV -> V
+Rule 3     LstV -> LstV ; V
+Rule 4     V -> varid = E
+Rule 5     V -> escrever E
+Rule 6     E -> E + E
+Rule 7     E -> E - E
+Rule 8     E -> E * E
+Rule 9     E -> ( E )
+Rule 10    E -> num
+Rule 11    E -> varid
+Rule 12    E -> string
+Rule 13    E -> E concat E
+Rule 14    E -> entrada ( )
+
+Terminals, with rules where they appear
+
+(                    : 9 14
+)                    : 9 14
+*                    : 8
++                    : 6
+-                    : 7
+;                    : 1 3
+=                    : 4
+aleatorio            : 
+concat               : 13
+entrada              : 14
+error                : 
+escrever             : 5
+num                  : 10
+string               : 12
+varid                : 4 11
+
+Nonterminals, with rules where they appear
+
+E                    : 4 5 6 6 7 7 8 8 9 13 13
+LstV                 : 1 3
+V                    : 2 3
+Z                    : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Z
+    (1) Z -> . LstV ;
+    (2) LstV -> . V
+    (3) LstV -> . LstV ; V
+    (4) V -> . varid = E
+    (5) V -> . escrever E
+
+    varid           shift and go to state 4
+    escrever        shift and go to state 5
+
+    Z                              shift and go to state 1
+    LstV                           shift and go to state 2
+    V                              shift and go to state 3
+
+state 1
+
+    (0) S' -> Z .
+
+
+
+state 2
+
+    (1) Z -> LstV . ;
+    (3) LstV -> LstV . ; V
+
+    ;               shift and go to state 6
+
+
+state 3
+
+    (2) LstV -> V .
+
+    ;               reduce using rule 2 (LstV -> V .)
+
+
+state 4
+
+    (4) V -> varid . = E
+
+    =               shift and go to state 7
+
+
+state 5
+
+    (5) V -> escrever . E
+    (6) E -> . E + E
+    (7) E -> . E - E
+    (8) E -> . E * E
+    (9) E -> . ( E )
+    (10) E -> . num
+    (11) E -> . varid
+    (12) E -> . string
+    (13) E -> . E concat E
+    (14) E -> . entrada ( )
+
+    (               shift and go to state 9
+    num             shift and go to state 10
+    varid           shift and go to state 11
+    string          shift and go to state 12
+    entrada         shift and go to state 13
+
+    E                              shift and go to state 8
+
+state 6
+
+    (1) Z -> LstV ; .
+    (3) LstV -> LstV ; . V
+    (4) V -> . varid = E
+    (5) V -> . escrever E
+
+    $end            reduce using rule 1 (Z -> LstV ; .)
+    varid           shift and go to state 4
+    escrever        shift and go to state 5
+
+    V                              shift and go to state 14
+
+state 7
+
+    (4) V -> varid = . E
+    (6) E -> . E + E
+    (7) E -> . E - E
+    (8) E -> . E * E
+    (9) E -> . ( E )
+    (10) E -> . num
+    (11) E -> . varid
+    (12) E -> . string
+    (13) E -> . E concat E
+    (14) E -> . entrada ( )
+
+    (               shift and go to state 9
+    num             shift and go to state 10
+    varid           shift and go to state 11
+    string          shift and go to state 12
+    entrada         shift and go to state 13
+
+    E                              shift and go to state 15
+
+state 8
+
+    (5) V -> escrever E .
+    (6) E -> E . + E
+    (7) E -> E . - E
+    (8) E -> E . * E
+    (13) E -> E . concat E
+
+    ;               reduce using rule 5 (V -> escrever E .)
+    +               shift and go to state 16
+    -               shift and go to state 17
+    *               shift and go to state 18
+    concat          shift and go to state 19
+
+
+state 9
+
+    (9) E -> ( . E )
+    (6) E -> . E + E
+    (7) E -> . E - E
+    (8) E -> . E * E
+    (9) E -> . ( E )
+    (10) E -> . num
+    (11) E -> . varid
+    (12) E -> . string
+    (13) E -> . E concat E
+    (14) E -> . entrada ( )
+
+    (               shift and go to state 9
+    num             shift and go to state 10
+    varid           shift and go to state 11
+    string          shift and go to state 12
+    entrada         shift and go to state 13
+
+    E                              shift and go to state 20
+
+state 10
+
+    (10) E -> num .
+
+    +               reduce using rule 10 (E -> num .)
+    -               reduce using rule 10 (E -> num .)
+    *               reduce using rule 10 (E -> num .)
+    concat          reduce using rule 10 (E -> num .)
+    ;               reduce using rule 10 (E -> num .)
+    )               reduce using rule 10 (E -> num .)
+
+
+state 11
+
+    (11) E -> varid .
+
+    +               reduce using rule 11 (E -> varid .)
+    -               reduce using rule 11 (E -> varid .)
+    *               reduce using rule 11 (E -> varid .)
+    concat          reduce using rule 11 (E -> varid .)
+    ;               reduce using rule 11 (E -> varid .)
+    )               reduce using rule 11 (E -> varid .)
+
+
+state 12
+
+    (12) E -> string .
+
+    +               reduce using rule 12 (E -> string .)
+    -               reduce using rule 12 (E -> string .)
+    *               reduce using rule 12 (E -> string .)
+    concat          reduce using rule 12 (E -> string .)
+    ;               reduce using rule 12 (E -> string .)
+    )               reduce using rule 12 (E -> string .)
+
+
+state 13
+
+    (14) E -> entrada . ( )
+
+    (               shift and go to state 21
+
+
+state 14
+
+    (3) LstV -> LstV ; V .
+
+    ;               reduce using rule 3 (LstV -> LstV ; V .)
+
+
+state 15
+
+    (4) V -> varid = E .
+    (6) E -> E . + E
+    (7) E -> E . - E
+    (8) E -> E . * E
+    (13) E -> E . concat E
+
+    ;               reduce using rule 4 (V -> varid = E .)
+    +               shift and go to state 16
+    -               shift and go to state 17
+    *               shift and go to state 18
+    concat          shift and go to state 19
+
+
+state 16
+
+    (6) E -> E + . E
+    (6) E -> . E + E
+    (7) E -> . E - E
+    (8) E -> . E * E
+    (9) E -> . ( E )
+    (10) E -> . num
+    (11) E -> . varid
+    (12) E -> . string
+    (13) E -> . E concat E
+    (14) E -> . entrada ( )
+
+    (               shift and go to state 9
+    num             shift and go to state 10
+    varid           shift and go to state 11
+    string          shift and go to state 12
+    entrada         shift and go to state 13
+
+    E                              shift and go to state 22
+
+state 17
+
+    (7) E -> E - . E
+    (6) E -> . E + E
+    (7) E -> . E - E
+    (8) E -> . E * E
+    (9) E -> . ( E )
+    (10) E -> . num
+    (11) E -> . varid
+    (12) E -> . string
+    (13) E -> . E concat E
+    (14) E -> . entrada ( )
+
+    (               shift and go to state 9
+    num             shift and go to state 10
+    varid           shift and go to state 11
+    string          shift and go to state 12
+    entrada         shift and go to state 13
+
+    E                              shift and go to state 23
+
+state 18
+
+    (8) E -> E * . E
+    (6) E -> . E + E
+    (7) E -> . E - E
+    (8) E -> . E * E
+    (9) E -> . ( E )
+    (10) E -> . num
+    (11) E -> . varid
+    (12) E -> . string
+    (13) E -> . E concat E
+    (14) E -> . entrada ( )
+
+    (               shift and go to state 9
+    num             shift and go to state 10
+    varid           shift and go to state 11
+    string          shift and go to state 12
+    entrada         shift and go to state 13
+
+    E                              shift and go to state 24
+
+state 19
+
+    (13) E -> E concat . E
+    (6) E -> . E + E
+    (7) E -> . E - E
+    (8) E -> . E * E
+    (9) E -> . ( E )
+    (10) E -> . num
+    (11) E -> . varid
+    (12) E -> . string
+    (13) E -> . E concat E
+    (14) E -> . entrada ( )
+
+    (               shift and go to state 9
+    num             shift and go to state 10
+    varid           shift and go to state 11
+    string          shift and go to state 12
+    entrada         shift and go to state 13
+
+    E                              shift and go to state 25
+
+state 20
+
+    (9) E -> ( E . )
+    (6) E -> E . + E
+    (7) E -> E . - E
+    (8) E -> E . * E
+    (13) E -> E . concat E
+
+    )               shift and go to state 26
+    +               shift and go to state 16
+    -               shift and go to state 17
+    *               shift and go to state 18
+    concat          shift and go to state 19
+
+
+state 21
+
+    (14) E -> entrada ( . )
+
+    )               shift and go to state 27
+
+
+state 22
+
+    (6) E -> E + E .
+    (6) E -> E . + E
+    (7) E -> E . - E
+    (8) E -> E . * E
+    (13) E -> E . concat E
+
+    +               reduce using rule 6 (E -> E + E .)
+    -               reduce using rule 6 (E -> E + E .)
+    concat          reduce using rule 6 (E -> E + E .)
+    ;               reduce using rule 6 (E -> E + E .)
+    )               reduce using rule 6 (E -> E + E .)
+    *               shift and go to state 18
+
+  ! *               [ reduce using rule 6 (E -> E + E .) ]
+  ! +               [ shift and go to state 16 ]
+  ! -               [ shift and go to state 17 ]
+  ! concat          [ shift and go to state 19 ]
+
+
+state 23
+
+    (7) E -> E - E .
+    (6) E -> E . + E
+    (7) E -> E . - E
+    (8) E -> E . * E
+    (13) E -> E . concat E
+
+    +               reduce using rule 7 (E -> E - E .)
+    -               reduce using rule 7 (E -> E - E .)
+    concat          reduce using rule 7 (E -> E - E .)
+    ;               reduce using rule 7 (E -> E - E .)
+    )               reduce using rule 7 (E -> E - E .)
+    *               shift and go to state 18
+
+  ! *               [ reduce using rule 7 (E -> E - E .) ]
+  ! +               [ shift and go to state 16 ]
+  ! -               [ shift and go to state 17 ]
+  ! concat          [ shift and go to state 19 ]
+
+
+state 24
+
+    (8) E -> E * E .
+    (6) E -> E . + E
+    (7) E -> E . - E
+    (8) E -> E . * E
+    (13) E -> E . concat E
+
+    +               reduce using rule 8 (E -> E * E .)
+    -               reduce using rule 8 (E -> E * E .)
+    *               reduce using rule 8 (E -> E * E .)
+    concat          reduce using rule 8 (E -> E * E .)
+    ;               reduce using rule 8 (E -> E * E .)
+    )               reduce using rule 8 (E -> E * E .)
+
+  ! +               [ shift and go to state 16 ]
+  ! -               [ shift and go to state 17 ]
+  ! *               [ shift and go to state 18 ]
+  ! concat          [ shift and go to state 19 ]
+
+
+state 25
+
+    (13) E -> E concat E .
+    (6) E -> E . + E
+    (7) E -> E . - E
+    (8) E -> E . * E
+    (13) E -> E . concat E
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for concat resolved as shift
+    ;               reduce using rule 13 (E -> E concat E .)
+    )               reduce using rule 13 (E -> E concat E .)
+    +               shift and go to state 16
+    -               shift and go to state 17
+    *               shift and go to state 18
+    concat          shift and go to state 19
+
+  ! +               [ reduce using rule 13 (E -> E concat E .) ]
+  ! -               [ reduce using rule 13 (E -> E concat E .) ]
+  ! *               [ reduce using rule 13 (E -> E concat E .) ]
+  ! concat          [ reduce using rule 13 (E -> E concat E .) ]
+
+
+state 26
+
+    (9) E -> ( E ) .
+
+    +               reduce using rule 9 (E -> ( E ) .)
+    -               reduce using rule 9 (E -> ( E ) .)
+    *               reduce using rule 9 (E -> ( E ) .)
+    concat          reduce using rule 9 (E -> ( E ) .)
+    ;               reduce using rule 9 (E -> ( E ) .)
+    )               reduce using rule 9 (E -> ( E ) .)
+
+
+state 27
+
+    (14) E -> entrada ( ) .
+
+    +               reduce using rule 14 (E -> entrada ( ) .)
+    -               reduce using rule 14 (E -> entrada ( ) .)
+    *               reduce using rule 14 (E -> entrada ( ) .)
+    concat          reduce using rule 14 (E -> entrada ( ) .)
+    ;               reduce using rule 14 (E -> entrada ( ) .)
+    )               reduce using rule 14 (E -> entrada ( ) .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for + in state 25 resolved as shift
+WARNING: shift/reduce conflict for - in state 25 resolved as shift
+WARNING: shift/reduce conflict for * in state 25 resolved as shift
+WARNING: shift/reduce conflict for concat in state 25 resolved as shift
