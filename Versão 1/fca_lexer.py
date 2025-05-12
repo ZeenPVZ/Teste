@@ -1,7 +1,7 @@
 import ply.lex as lex
 
 class ArithLexer:
-    tokens = ("num", "varid", "escrever", "entrada", "aleatorio", "string", "concat")
+    tokens = ("num", "varid", "escrever", "entrada", "string", "concat")
     
     literals = ['+', '-', '*', '(', ')', '=', ';']
     t_ignore = " \t"
@@ -19,10 +19,6 @@ class ArithLexer:
         return t
     
     def t_entrada(self, t):
-        r"[a-z_][a-zA-Z_0-9]*(\?|!)?"
-        return t
-    
-    def t_aleatorio(self, t):
         r"[a-z_][a-zA-Z_0-9]*(\?|!)?"
         return t
     
